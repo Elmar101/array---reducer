@@ -12,10 +12,24 @@
         fetch('https://jsonplaceholder.typicode.com/todos')
             .then(response => response.json())
             .then(json =>{ 
-               const data = json 
+               const data = json ;
+        
+               const accumiliyator = showData(data,"completed");
 
+               function showData(data,propertyName) {
+                return data.reduce((acc,obj)=>{
+                    const key = obj[propertyName] ;
+
+                    if(!acc[key]) acc[key] = [];
+
+                    acc[key].push(obj);
+
+                    return acc;
+                },{})
+               }
+
+               console.log(accumiliyator)
                
-
             })
         
 
